@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>100 Razones para Amarte</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #000;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Corazones de fondo morados fosforescentes */
+    .background-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      fill: #bb00ff;
+      opacity: 0.15;
+      filter: drop-shadow(0 0 10px #bb00ff);
+      animation: pulse 3s infinite ease-in-out;
+      animation-delay: var(--delay);
+    }
+
+    .heart:nth-child(1) {
+      top: 10%;
+      left: 15%;
+      --delay: 0s;
+    }
+    .heart:nth-child(2) {
+      top: 30%;
+      left: 70%;
+      --delay: 0.5s;
+    }
+    .heart:nth-child(3) {
+      top: 50%;
+      left: 40%;
+      --delay: 1s;
+    }
+    .heart:nth-child(4) {
+      top: 75%;
+      left: 80%;
+      --delay: 1.5s;
+    }
+    .heart:nth-child(5) {
+      top: 85%;
+      left: 20%;
+      --delay: 2s;
+    }
+    .heart:nth-child(6) {
+      top: 25%;
+      left: 50%;
+      --delay: 2.5s;
+    }
+    .heart:nth-child(7) {
+      top: 60%;
+      left: 10%;
+      --delay: 1.2s;
+    }
+    .heart:nth-child(8) {
+      top: 40%;
+      left: 85%;
+      --delay: 0.8s;
+    }
+    .heart:nth-child(9) {
+      top: 15%;
+      left: 35%;
+      --delay: 1.8s;
+    }
+    .heart:nth-child(10) {
+      top: 70%;
+      left: 60%;
+      --delay: 2.2s;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.15;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.4;
+        transform: scale(1.1);
+      }
+    }
+
+    /* Estilos para los tulipanes */
+    .tulip-left, .tulip-right {
+      position: fixed;
+      z-index: 2; /* Mayor que el contenedor principal para que estén encima */
+      width: 300px;
+      height: auto;
+      pointer-events: none;
+      filter: drop-shadow(0 0 10px #bb00ffaa);
+      opacity: 0.8;
+    }
+
+    .tulip-left {
+      top: -150px;
+      left: -100px;
+      transform: rotate(20deg);
+    }
+
+    .tulip-right {
+      top: -150px;
+      right: -100px;
+      transform: rotate(-20deg) scaleX(-1); /* Girado y volteado para que mire hacia el otro lado */
+    }
+
+    /* Animación de caída de pétalos */
+    .petals-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3; /* Asegura que los pétalos estén encima de todo */
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      background-color: #bb00ff;
+      opacity: 0.6;
+      border-radius: 50%;
+      filter: blur(2px);
+      animation: fall 10s linear infinite;
+    }
+    .petal:nth-child(1) { width: 15px; height: 15px; left: 10%; animation-duration: 12s; }
+    .petal:nth-child(2) { width: 18px; height: 18px; left: 25%; animation-duration: 9s; }
+    .petal:nth-child(3) { width: 12px; height: 12px; left: 40%; animation-duration: 14s; }
+    .petal:nth-child(4) { width: 20px; height: 20px; left: 55%; animation-duration: 11s; }
+    .petal:nth-child(5) { width: 16px; height: 16px; left: 70%; animation-duration: 10s; }
+    .petal:nth-child(6) { width: 14px; height: 14px; left: 85%; animation-duration: 13s; }
+    .petal:nth-child(7) { width: 17px; height: 17px; left: 30%; animation-duration: 9.5s; }
+    .petal:nth-child(8) { width: 19px; height: 19px; left: 50%; animation-duration: 11.5s; }
+    .petal:nth-child(9) { width: 13px; height: 13px; left: 75%; animation-duration: 12.5s; }
+    .petal:nth-child(10) { width: 21px; height: 21px; left: 5%; animation-duration: 10.5s; }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Container with higher z-index */
+    .content-container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      width: 95vw;
+      background-color: #1a1a1a;
+      border-radius: 1rem;
+      padding: 2.5rem 3rem;
+      box-shadow: 0 0 25px #bb00ffaa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 400px;
+    }
+
+    h1 {
+      color: #bb00ff;
+      font-weight: 900;
+      font-size: 2.75rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      user-select: none;
+      text-shadow: 0 0 10px #bb00ff;
+    }
+
+    .reason-box {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d8b4fe;
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.5;
+      padding: 1.5rem 2rem;
+      border: 3px solid #bb00ff;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px #bb00ff88;
+      user-select: none;
+      min-height: 180px;
+      transition: box-shadow 0.3s ease;
+    }
+    .reason-box:hover {
+      box-shadow: 0 0 30px #bb00ffcc;
+    }
+
+    .nav-buttons {
+      margin-top: 2rem;
+      display: flex;
+      gap: 2rem;
+    }
+
+    button {
+      background-color: #bb00ff;
+      border: none;
+      border-radius: 9999px;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 0 12px #bb00ffcc;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+    button:disabled {
+      background-color: #5a0080;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+    button:hover:not(:disabled) {
+      background-color: #d100ff;
+      box-shadow: 0 0 25px #d100ffcc;
+    }
+    button svg {
+      width: 28px;
+      height: 28px;
+      stroke: white;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://assets.codepen.io/1468117/tulip_neon_left.svg" alt="Tulipán morado a la izquierda" class="tulip-left" />
+  <img src="https://assets.codepen.io/1468117/tulip_neon_right.svg" alt="Tulipán morado a la derecha" class="tulip-right" />
+
+  <div class="background-hearts" aria-hidden="true">
+    <svg class="heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <svg class="heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <svg class="heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <svg class="heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <svg class="heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <svg class="heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <svg class="heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <svg class="heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <svg class="heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <svg class="heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </div>
+
+  <div class="petals-container" aria-hidden="true">
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+  </div>
+
+  <main class="content-container" role="main" aria-label="100 razones para amarte">
+    <h1>100 Razones para Amarte</h1>
+    <div class="reason-box" id="reason-text" aria-live="polite" aria-atomic="true">
+      Por tu sonrisa que ilumina mi día
+    </div>
+    <nav class="nav-buttons" aria-label="Navegación de razones">
+      <button id="prev-btn" aria-label="Razón anterior" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button id="next-btn" aria-label="Siguiente razón">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </nav>
+  </main>
+
+  <script>
+    const reasons = [
+      "te amo por que me haces sentir amado sin decir ni una palabra",
+      "te amo por que tu abrazo me devuelve la paz",
+      "te amo por que tu sonrisa puede salvarme el dia",
+      "te amo por que siempre me escuchas de verdad",
+      "te amo por que confias en mi, incluso cunando yo lo dudo",
+      "te amo por por que me inspiras a ser mejor cada dia",
+      "te amo por que secas mis lagrimas con tu ternura",
+      "te amo por que siempre te preocupas por mi",
+      "te amo por que crees en mi cuando nadie mas lo hace",
+      "te amo por que estas cuando mas te necesito",
+      "te amo por que tu voz calma mi ansiedad",
+      "te amo por que tu risa es contagiosa",
+      "te amo por que tus caricias me hacen sentir vivo",
+      "te amo por que me cuidas incluso sin pedirtelo",
+      "te amo por que sabes cuando necesito un abrazo",
+      "te amo por que sabes como hacerme sentir especial",
+      "te amo por que tu ternura no tiene limites",
+      "te amo por que me miras como si yo fuera tu mundo",
+      "te amo por que tienes gestos hermosos sin esperarlos",
+      "te amo por que contigo me siento seguro",
+      "te amo por que eres fuerte, incluso cuando te sientes fragil",
+      "te amo por que tu corazon es un universo",
+      "te amo por que amas con valentia",
+      "te amo por que sabes perdonar de verdad",
+      "te amo por que tu empatia me toca el alma",
+      "te amo por que me amas sin condiciones",
+      "te amo por que aun que te cuesta eres sincera con lo que sientes",
+      "te amo por que eres transparente, real",
+      "te amo por que tu intucion magica",
+      "te amo por que nuncas finges ser otra persona",
+      "te amo por que tienes ideas maravillosas",
+      "te amo por que puedo hablar contigo de cualquier cosa",
+      "te amo por que me retas a crecer",
+      "te amo por que tu manera de ver la vida me inspira",
+      "te amo por que aprendo de ti todos los dias",
+      "te amo por que tienes sueños hermosos",
+      "te amo por que luchas por lo que amas",
+      "te amo por que tienes metas y pasion",
+      "te amo por que simpre buscas aprender mas",
+      "te amo por que tu inteligencia emociona",
+      "te amo por que contigo todo es mas bonito",
+      "te amo por que haces que el silencio sea comodo",
+      "te amo por que el tiempo contigo vuela",
+      "te amo por que caminar contigo es como flotar",
+      "te amo por que conviertes en simple lo magico",
+      "te amo por que siempre tienes algo que me hace sonreir",
+      "te amo por que eres mi mejor compañera de aventuras",
+      "te amo por que siempre estas ahi, sin pedir nada",
+      "te amo por que contigo cualquier lugar se vuelve especial",
+      "te amo por que estar contigo es un regalo",
+      "te amo por que iluminas cualquier lugar donde estas",
+      "te amo por que tu energia me contagia",
+      "te amo por que me das tranquilidad solo con estar",
+      "te amo por que la vida se siente mas completa",
+      "te amo por que amas de una forma unica",
+      "te amo por que tu dulzura es real, sincera",
+      "te amo por que tu mirada lo hace todo",
+      "te amo por que sabes calmar mis tormentas",
+      "te amo por que tu amor es un refugio",
+      "te amo por que me haces sentir orgulloso de tenerte",
+      "te amo por que tu sonrisa me derrite",
+      "te amo por que tu voz suena como musica",
+      "te amo por que tus ojos me hipnotizan",
+      "te amo por que tus besos son adictivos",
+      "te amo por que tus abrazos son mi lugar favorito",
+      "te amo por que el olor de tu cabello vive en mi memoria",
+      "te amo por que eres hermosa cada dia, de una manera distinta",
+      "te amo por que hasta tu forma de caminar me encanta",
+      "te amo por que tus caricias me hacen olvidar el mundo",
+      "te amo por que tu piel se siente como mi hogar",
+      "te amo por que enfrentas la vida con coraje",
+      "te amo por que conviertes la tristeza en fuerza",
+      "te amo por que luchas por los que amas",
+      "te amo por que tienes un alma que vale mas que el oro",
+      "te amo por que no te rindes facilmente",
+      "te amo por que le vez el aldo bueno a todas las personas",
+      "te amo por que tu lealtad es inquebrantable",
+      "te amo por que no necesitas ser perfecta para ser maravillosa",
+      "te amo por que creces en silencio, todos los dias",
+      "te amo por que tienes una dignidad que admiro",
+      "Por tu aprecio por el arte",
+      "Por tu talento único",
+      "Por tu dedicación a lo que amas",
+      "por amarme como lo haces",
+      "Por tu responsabilidad",
+      "Por tu puntualidad",
+      "Por tu atención a los detalles",
+      "Por tu memoria fenomenal",
+      "Por tu capacidad de liderazgo",
+      "Por tu trabajo en equipo",
+      "Por inspirarme a ser mejor",
+      "Por hacerme reír cada día",
+      "Por hacer que me sienta especial",
+      "Por ser exactamente quien eres",
+      "por ser la persona mas maravillosa que he conocido durante todo este tiempo",
+      "TE AMO, TE ADMIRO Y TE VALORO MAS DE LO QUE PUEDO EXPRESAR CON PALABRAS"
+    ];
+
+    let currentIndex = 0;
+    const reasonText = document.getElementById("reason-text");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    function updateUI() {
+      reasonText.textContent = reasons[currentIndex];
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === reasons.length - 1;
+    }
+
+    prevBtn.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateUI();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (currentIndex < reasons.length - 1) {
+        currentIndex++;
+        updateUI();
+      }
+    });
+
+    updateUI();
+  </script>
+</body>
+</html>
